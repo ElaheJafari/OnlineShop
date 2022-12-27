@@ -27,6 +27,7 @@ export const cartSlice = createSlice({
           return item;
         });
       }
+      state.IsOpen = true;
     },
     setIsOpen: (state, action: PayloadAction<boolean>) => {
       state.IsOpen = action.payload;

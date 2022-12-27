@@ -1,13 +1,13 @@
 import { Form, Formik } from 'formik';
 import React from 'react';
-import Button from '../../app/components/shared/Button';
-import Inputs from '../../app/components/shared/Inputs';
-import appAxios from '../../app/middelwares/appAxios';
+import Button from '../../src/components/shared/Button';
+import Inputs from '../../src/components/shared/Inputs';
+import appAxios from '../../src/middelwares/appAxios';
 import { useCookies } from 'react-cookie'
 import Image from 'next/image';
 import Router from 'next/router';
 import { NextPageWithLayout } from '../_app';
-import AuthLayout from '../../app/layouts/AuthLayout';
+import AuthLayout from '../../src/layouts/AuthLayout';
 
 interface LoginFormValuesInterface {
     email: string,

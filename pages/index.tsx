@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import appAxios from "../app/middelwares/appAxios";
-import MainLayout from "../app/layouts/mainLayout";
-import ProductListItem from "../app/components/ProductListItem/ProductListItem";
+import appAxios from "../src/middelwares/appAxios";
+import MainLayout from "../src/layouts/MainLayout";
+import ProductListItem from "../src/components/ProductListItem/ProductListItem";
 
 import type { AxiosResponse } from "axios";
 import type { NextPageWithLayout } from "./_app";
-import type { Product } from "../app/models/product";
+import type { Product } from "../src/models/product";
 
 
 const Home: NextPageWithLayout = () => {

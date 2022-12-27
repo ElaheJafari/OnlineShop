@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useCallback } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { useAppSelector } from '../hooks/useRedux';
 import { useAppDispatch } from '../hooks/useRedux';
 import { setIsOpen } from '../redux/slices/cartSlice';
@@ -12,6 +12,7 @@ interface mainLayoutProps {
 
 const MainLayout: NextPage<mainLayoutProps> = ({ children }) => {
   const cartState = useAppSelector((state) => state.cartReducer);
+  const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const { data, error } = useUser();
 
@@ -45,27 +46,36 @@ const MainLayout: NextPage<mainLayoutProps> = ({ children }) => {
             }
 
           </div>
-          {data && !error ? <Link href='' className='hover:text-hover-blue pl-3'>{data.user.email}</Link>
+          {data && !error ?
+            <div className='relative'>
+              <button onClick={() => { setOpen(true) }} className='hover:text-hover-blue ml-2'>{data.user.email}</button>
+              {open &&
+                <>
+                  <div className='menu z-50 absolute top-8 overflow-y-auto text-regal-blue p-2 min-w-[110px] min-h-[120px] max-h-[120px] bg-[#d4c8ff] left-0'>
+                    <div className='border-b-[1px] border-[#b4a8df]'>
+                      <Link href='/profile' className='hover:text-hover-blue'>Profile</Link>
+                    </div>
+                    <div className='border-b-[1px] border-[#b4a8df]'>
+                      <Link href='#' className='hover:text-hover-blue'>Orders</Link>
+                    </div>
+                    <div className='border-b-[1px] border-[#b4a8df]'>
+                      <Link href='#' className='hover:text-hover-blue'>Setting</Link>
+                    </div>
+                    <div>
+                      <Link href='#' className='hover:text-hover-blue'>Log Out</Link>
+                    </div>
+                  </div>
+                </>
+              }
+            </div>
             : <Link href='/auth/signin' className='hover:text-hover-blue pl-3'>Login</Link>}
-          <div className='menu z-50 absolute top-8 overflow-y-auto text-regal-blue p-2 min-w-[110px] min-h-[120px] max-h-[120px] bg-[#d4c8ff] mt-2 right-0'>
-            <div className='border-b-[1px] border-[#b4a8df]'>
-              <Link href='#' className='hover:text-hover-blue'>Profile</Link>
-            </div>
-            <div className='border-b-[1px] border-[#b4a8df]'>
-              <Link href='#' className='hover:text-hover-blue'>Orders</Link>
-            </div>
-            <div className='border-b-[1px] border-[#b4a8df]'>
-              <Link href='#' className='hover:text-hover-blue'>Setting</Link>
-            </div>
-            <div>
-              <Link href='#' className='hover:text-hover-blue'>Log Out</Link>
-            </div>
-          </div>
+
         </div>
       </div>
       <div className='main bg-[#fbfbfb] font-bold py-2 px-4'>{children}</div>
-      {cartState.IsOpen &&
-        <div onClick={() => { dispatch(setIsOpen(false)) }} className='fixed left-0 right-0 top-0 button-0 w-full h-full z-10'></div>
+      {cartState.IsOpen || open ?
+        <div onClick={() => { dispatch(setIsOpen(false)); setOpen(false) }} className=' fixed left-0 right-0 top-0 button-0 w-full h-full z-10'></div>
+        : <></>
       }
     </div>
   )

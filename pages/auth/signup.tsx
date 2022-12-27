@@ -1,11 +1,11 @@
 import { Form, FormikProps, Formik } from "formik";
-import Button from "../../app/components/shared/Button";
-import Inputs from "../../app/components/shared/Inputs";
+import Button from "../../src/components/shared/Button";
+import Inputs from "../../src/components/shared/Inputs";
 import * as yup from 'yup';
 import Router from 'next/router';
-import appAxios from "../../app/middelwares/appAxios";
+import appAxios from "../../src/middelwares/appAxios";
 import Image from "next/image";
-import AuthLayout from "../../app/layouts/AuthLayout";
+import AuthLayout from "../../src/layouts/AuthLayout";
 import { NextPageWithLayout } from "../_app";
 
 interface RegisterFormValuesInterface {

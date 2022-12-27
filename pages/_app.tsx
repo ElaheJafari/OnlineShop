@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app'
 import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 import { Provider } from 'react-redux';
-import { store } from '../app/redux/store';
+import { store } from '../src/redux/store';
 import { CookiesProvider } from 'react-cookie';
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
