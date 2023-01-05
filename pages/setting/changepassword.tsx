@@ -16,11 +16,11 @@ interface ChangePasswordProps {
 }
 const ChangePassword: NextPageWithLayout = () => {
 
-  const [cookies, setCookies, removeCookies] = useCookies(['username']);
+  const [cookies, , removeCookies] = useCookies(['username']);
 
   const HandleSubmit = async (values: ChangePasswordProps) => {
     try {
-      const responce = await appAxios.put('/user/change-password', values,
+      await appAxios.put('/user/change-password', values,
         {
           headers: {
             authorization:

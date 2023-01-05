@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 
 import type { ReactElement } from 'react';
 import type { NextPage } from 'next';

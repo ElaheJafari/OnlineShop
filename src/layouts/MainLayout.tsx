@@ -5,6 +5,9 @@ import { setIsOpen } from '../redux/slices/cartSlice';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import useUser from '../hooks/useUser';
+import { useCookies } from 'react-cookie';
+import Router from 'next/router';
+import Button from '../components/shared/Button';
 
 interface mainLayoutProps {
   children: ReactElement,
@@ -15,6 +18,12 @@ const MainLayout: NextPage<mainLayoutProps> = ({ children }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const { data, error } = useUser();
+  const [cookies, , removeCookies] = useCookies(['username']);
+
+  const LogOut = () => {
+    removeCookies('username');
+    Router.push({ pathname: '/auth/signin', query: { mode: 'logout' } })
+  }
 
 
   return (
@@ -40,6 +49,7 @@ const MainLayout: NextPage<mainLayoutProps> = ({ children }) => {
                         </li>
                       })}
                     </ul>
+                    {cookies.username ? <Button onClick={()=>{Router.push('/product/address')}} text='Next' type='submit' className='w-full' /> : <></>}
                   </div>
                 </div>
               </>
@@ -56,13 +66,13 @@ const MainLayout: NextPage<mainLayoutProps> = ({ children }) => {
                       <Link href='/profile' className='hover:text-hover-blue'>Profile</Link>
                     </div>
                     <div className='border-b-[1px] border-[#b4a8df]'>
-                      <Link href='#' className='hover:text-hover-blue'>Orders</Link>
+                      <Link href='/order' className='hover:text-hover-blue'>Orders</Link>
                     </div>
                     <div className='border-b-[1px] border-[#b4a8df]'>
                       <Link href='/setting/changeprofile' className='hover:text-hover-blue'>Setting</Link>
                     </div>
                     <div>
-                      <Link href='#' className='hover:text-hover-blue'>Log Out</Link>
+                      <button onClick={LogOut} className='hover:text-hover-blue'>Log Out</button>
                     </div>
                   </div>
                 </>

@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { CartProduct, Product } from "../../models/product";
+import { address } from "../../models/address";
 
 interface cartState {
   carts: CartProduct[];
+  address?: address;
   IsOpen: boolean;
 }
 const initialState: cartState = {
@@ -32,8 +34,11 @@ export const cartSlice = createSlice({
     setIsOpen: (state, action: PayloadAction<boolean>) => {
       state.IsOpen = action.payload;
     },
+    setAddress: (state, action: PayloadAction<address>) => {
+      state.address = action.payload;
+    },
   },
 });
 
-export const { AddToCart, setIsOpen } = cartSlice.actions;
+export const { AddToCart, setIsOpen, setAddress } = cartSlice.actions;
 export default cartSlice.reducer;
