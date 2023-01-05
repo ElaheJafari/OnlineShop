@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL : "http://kzico.runflare.run"
+    baseURL : "http://kzico.runflare.run" 
 })
 

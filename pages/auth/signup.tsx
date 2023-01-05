@@ -56,8 +56,6 @@ const Register: NextPageWithLayout = () => {
                 validationSchema={loginFormSchema}
             >
                 {(props: FormikProps<RegisterFormValuesInterface>) => {
-                    console.log(props);
-                    
                     return <Form className="bg-gray-50 w-1/2 border border-gray-400 rounded flex my-10 mx-auto">
                         <div className="w-3/5">
                             <div className="relative w-full h-full">

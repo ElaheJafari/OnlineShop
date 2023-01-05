@@ -48,10 +48,10 @@ const MainLayout: NextPage<mainLayoutProps> = ({ children }) => {
           </div>
           {data && !error ?
             <div className='relative'>
-              <button onClick={() => { setOpen(true) }} className='hover:text-hover-blue ml-2'>{data.user.email}</button>
+              <button onClick={() => { setOpen(true) }} className='hover:text-hover-blue ml-2'>{data.user.username}</button>
               {open &&
                 <>
-                  <div className='menu z-50 absolute top-8 overflow-y-auto text-regal-blue p-2 min-w-[110px] min-h-[120px] max-h-[120px] bg-[#d4c8ff] left-0'>
+                  <div className='menu z-50 absolute top-8 overflow-y-auto text-regal-blue p-2 min-w-[110px] min-h-[120px] max-h-[120px] bg-[#d4c8ff] right-0'>
                     <div className='border-b-[1px] border-[#b4a8df]'>
                       <Link href='/profile' className='hover:text-hover-blue'>Profile</Link>
                     </div>
@@ -59,7 +59,7 @@ const MainLayout: NextPage<mainLayoutProps> = ({ children }) => {
                       <Link href='#' className='hover:text-hover-blue'>Orders</Link>
                     </div>
                     <div className='border-b-[1px] border-[#b4a8df]'>
-                      <Link href='#' className='hover:text-hover-blue'>Setting</Link>
+                      <Link href='/setting/changeprofile' className='hover:text-hover-blue'>Setting</Link>
                     </div>
                     <div>
                       <Link href='#' className='hover:text-hover-blue'>Log Out</Link>
@@ -72,7 +72,7 @@ const MainLayout: NextPage<mainLayoutProps> = ({ children }) => {
 
         </div>
       </div>
-      <div className='main bg-[#fbfbfb] font-bold py-2 px-4'>{children}</div>
+      <div className='main bg-[#fbfbfb] font-bold py-2 px-4 relative'>{children}</div>
       {cartState.IsOpen || open ?
         <div onClick={() => { dispatch(setIsOpen(false)); setOpen(false) }} className=' fixed left-0 right-0 top-0 button-0 w-full h-full z-10'></div>
         : <></>

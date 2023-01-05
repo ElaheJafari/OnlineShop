@@ -1,4 +1,3 @@
-
 export interface User {
   _id: string;
   username: string;
@@ -7,4 +6,9 @@ export interface User {
   isAdmin: boolean;
   image: string;
   token: string;
+  firstname?: string;
+  lastname?: string;
+  gender?: string;
+  age?: string;
+  city?: string;
 }

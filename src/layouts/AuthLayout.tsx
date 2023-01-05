@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { useCookies } from 'react-cookie';
-import Router from 'next/router';
-
-import type { ReactElement } from 'react'
-import type { NextPage } from 'next';
+import Router, { useRouter } from 'next/router';
 import useUser from '../hooks/useUser';
+
+import type { ReactElement } from 'react';
+import type { NextPage } from 'next';
 
 interface AuthLayoutProps {
     children: ReactElement,
@@ -12,12 +11,13 @@ interface AuthLayoutProps {
 
 const AuthLayout: NextPage<AuthLayoutProps> = ({ children }) => {
 
+    const { query } = useRouter();
     const { data, error } = useUser();
 
     useEffect(() => {
-        if (data && !error)
+        if (data && !error && !query.mode) 
             Router.push('/')
-    }, [data , error])
+    }, [data, error, query])
 
     return (
         <>
